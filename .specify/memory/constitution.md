@@ -1,55 +1,165 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version: 1.0.0 (Initial ratification)
+Modified Principles: All principles created from template
+Added Sections:
+  - Core Principles (7 principles for book + RAG chatbot)
+  - Technical Stack Requirements
+  - Development Workflow
+  - Governance
+Removed Sections: None (initial creation)
+Templates Status:
+  ✅ plan-template.md - reviewed, compatible
+  ✅ spec-template.md - reviewed, compatible
+  ✅ tasks-template.md - reviewed, compatible
+Follow-up TODOs: None
+-->
+
+# Physical AI & Humanoid Robotics Book Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Content-First Documentation
+Every piece of content MUST be structured, accessible, and pedagogically sound. Book chapters MUST be written in Markdown with clear learning objectives. Content MUST follow a progressive complexity model: fundamentals → intermediate concepts → advanced applications. Each chapter MUST include practical examples, visual diagrams, and references to support learning.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+**Rationale**: Technical books require careful scaffolding of knowledge. Readers need clear pathways from basic concepts to advanced understanding without overwhelming cognitive load.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Docusaurus Architecture
+The book MUST be implemented as a Docusaurus static site. All content MUST use Docusaurus conventions: docs/ for chapters, blog/ for updates, static/ for assets. The site structure MUST support versioning, search, and responsive design. Configuration MUST be maintainable and extensible.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Docusaurus provides enterprise-grade documentation infrastructure with excellent developer experience, built-in search, versioning, and GitHub Pages deployment support.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. GitHub Pages Deployment
+The book site MUST be deployable to GitHub Pages with automated CI/CD. Deployment MUST be triggered on main branch commits. The deployment pipeline MUST include build validation, link checking, and accessibility testing. The production URL MUST be stable and properly configured.
 
-### [PRINCIPLE_6_NAME]
+**Rationale**: GitHub Pages offers free, reliable hosting with excellent integration into the development workflow. Automated deployment ensures the published book always reflects the latest approved content.
 
+### IV. RAG Chatbot Integration
+A Retrieval-Augmented Generation (RAG) chatbot MUST be embedded into the book. The chatbot MUST answer questions using ONLY the book's content as its knowledge base. The chatbot MUST cite sources with chapter and section references. The chatbot MUST support contextual queries from user-selected text passages.
 
-[PRINCIPLE__DESCRIPTION]
+**Rationale**: RAG enables interactive learning by allowing readers to query content dynamically, reinforcing understanding through conversational exploration while maintaining accuracy by grounding responses in the book's authoritative content.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### V. Hybrid Storage Architecture
+The RAG system MUST use a hybrid storage approach:
+- **Neon Serverless Postgres** for vector-text hybrid storage with pgvector extension
+- **Qdrant Cloud Free Tier** for high-performance vector similarity search
+- Text content and metadata MUST be stored in Postgres
+- Embeddings MUST be stored in both systems for redundancy and optimization
+- Queries MUST leverage Qdrant for fast similarity search, Postgres for full-text and metadata filtering
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Rationale**: Hybrid storage maximizes both performance and cost-efficiency. Qdrant provides specialized vector search capabilities while Neon Postgres ensures data durability, ACID compliance, and rich querying across text and vectors. This architecture supports scaling from free tier to production.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### VI. Modern AI Stack
+The RAG chatbot backend MUST use:
+- **FastAPI** for REST API endpoints (async, type-safe, auto-documented)
+- **OpenAI Agents SDK / ChatKit** for conversational AI orchestration
+- **OpenAI embeddings** (text-embedding-3-small or text-embedding-3-large) for vector generation
+- **Streaming responses** for real-time user experience
+- The frontend MUST use a modern JavaScript framework (React/Vue) for chat UI
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: FastAPI provides production-grade Python API development with excellent performance and developer experience. OpenAI's ecosystem offers state-of-the-art language models and tooling. This stack is well-documented, widely adopted, and suitable for both prototyping and production.
+
+### VII. Test-First for Critical Paths (NON-NEGOTIABLE)
+Tests MUST be written BEFORE implementation for:
+- RAG retrieval accuracy (precision/recall metrics)
+- Chatbot response quality (ground truth comparisons)
+- API endpoint contracts (request/response validation)
+- Database operations (data integrity, vector search correctness)
+- Deployment pipeline (build success, link validity)
+
+Test-Driven Development (TDD) is MANDATORY for backend services. Red-Green-Refactor cycle MUST be followed: write failing test → implement → refactor. All tests MUST pass before merging to main.
+
+**Rationale**: RAG systems require rigorous testing to prevent hallucinations, ensure retrieval quality, and maintain system reliability. Test-first development catches issues early and provides regression safety as the system evolves.
+
+## Technical Stack Requirements
+
+### Frontend
+- **Static Site**: Docusaurus 3.x (Node.js 18+, React 18)
+- **Chat UI**: React component embedded in Docusaurus with WebSocket or SSE support
+- **Styling**: Docusaurus themes + custom CSS modules
+- **Deployment**: GitHub Pages (static hosting)
+
+### Backend (RAG Chatbot)
+- **API Framework**: FastAPI (Python 3.11+)
+- **AI Orchestration**: OpenAI Agents SDK or ChatKit SDK
+- **Embeddings**: OpenAI text-embedding-3-small (1536 dimensions) or text-embedding-3-large (3072 dimensions)
+- **LLM**: OpenAI GPT-4 or GPT-4-turbo for chat completions
+- **Hosting**: Vercel, Railway, Render, or similar serverless platform with ASGI support
+
+### Data Layer
+- **Primary Store**: Neon Serverless Postgres (pgvector extension for embeddings)
+- **Vector Search**: Qdrant Cloud Free Tier (1GB storage, 100K vectors limit)
+- **Embedding Strategy**: Dual-write to both Postgres and Qdrant for redundancy
+- **Query Strategy**: Qdrant for fast top-k similarity, Postgres for metadata filtering and full-text search
+
+### DevOps & Observability
+- **CI/CD**: GitHub Actions (build, test, deploy)
+- **Monitoring**: Structured logging (JSON format), error tracking (Sentry or similar)
+- **Secrets Management**: Environment variables, never hardcoded
+- **Version Control**: Git with conventional commits (feat, fix, docs, chore)
+
+### Security
+- **API Authentication**: API keys for chatbot backend (rate limiting, CORS configuration)
+- **Data Privacy**: No PII in embeddings or logs
+- **HTTPS**: All production endpoints MUST use TLS
+- **Dependencies**: Regular security audits with npm audit / pip-audit
+
+## Development Workflow
+
+### Content Development
+1. **Draft**: Write chapter content in Markdown with proper frontmatter
+2. **Review**: Technical accuracy review + peer review for clarity
+3. **Embed**: Run embedding pipeline to ingest chapter into vector stores
+4. **Test**: Validate RAG retrieval quality for new content
+5. **Merge**: Commit to main triggers deployment
+
+### RAG System Development
+1. **Design**: Define API contract and test cases FIRST
+2. **Red**: Write failing tests for new functionality
+3. **Green**: Implement minimal code to pass tests
+4. **Refactor**: Clean up, optimize, document
+5. **Integration Test**: Validate end-to-end user workflow
+6. **Deploy**: Merge to main, monitor production metrics
+
+### Code Review Requirements
+- All PRs MUST pass CI checks (lint, tests, build)
+- RAG-related PRs MUST include retrieval quality metrics
+- Backend PRs MUST include API contract tests
+- Frontend PRs MUST include accessibility checks
+- Approvals required: 1 for content, 2 for system changes
+
+### Quality Gates
+- **Build**: Docusaurus build MUST succeed without errors
+- **Links**: All internal/external links MUST be valid
+- **Tests**: 100% pass rate for critical paths (RAG, API, deployment)
+- **Performance**: Chatbot response time MUST be <3s for p95
+- **Accessibility**: WCAG 2.1 Level AA compliance for book site
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Constitution Authority
+This constitution supersedes all other project practices. Any violation MUST be documented with explicit justification in the implementation plan (plan.md) under "Complexity Tracking" or in an Architecture Decision Record (ADR).
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+### Amendment Process
+Amendments require:
+1. **Proposal**: Document proposed changes with rationale
+2. **Impact Analysis**: Identify affected templates, workflows, and artifacts
+3. **Review**: Approve with project maintainers (minimum 2 approvals)
+4. **Migration Plan**: Define steps to update existing work
+5. **Version Bump**: Follow semantic versioning (MAJOR.MINOR.PATCH)
+6. **Propagation**: Update all dependent templates and documentation
+
+### Versioning Policy
+- **MAJOR**: Breaking changes to core principles or governance (e.g., removing test-first requirement)
+- **MINOR**: New principles added, significant expansions to existing principles
+- **PATCH**: Clarifications, wording improvements, non-semantic refinements
+
+### Compliance Review
+- All PRs MUST verify compliance with constitutional principles
+- Complexity violations MUST be explicitly justified in plan.md or ADR
+- Annual constitution review to ensure principles remain relevant
+
+### Runtime Development Guidance
+Agents and developers MUST consult this constitution before starting new features. When in doubt, prefer simplicity and adherence to stated principles over clever solutions. Use CLAUDE.md for agent-specific execution guidance.
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-02 | **Last Amended**: 2025-12-02
