@@ -73,17 +73,10 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Start server for testing
-        run: npm run serve &
-        env:
-          CI: true
-
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
-
       - name: Run link validation tests (T051)
         run: npx playwright test tests/links.test.js --reporter=list
         env:
+          CI: true
           DEPLOYMENT_URL: http://localhost:3000/hackathon1
 
   # T057: Playwright test execution step
@@ -113,17 +106,10 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Start server for testing
-        run: npm run serve &
-        env:
-          CI: true
-
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
-
       - name: Run navigation tests (T021-T024, T054)
         run: npx playwright test tests/navigation.test.js --reporter=list
         env:
+          CI: true
           DEPLOYMENT_URL: http://localhost:3000/hackathon1
 
       - name: Upload test results
@@ -161,17 +147,10 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Start server for testing
-        run: npm run serve &
-        env:
-          CI: true
-
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
-
       - name: Run accessibility tests (T052-T053)
         run: npx playwright test tests/accessibility.test.js --reporter=list
         env:
+          CI: true
           DEPLOYMENT_URL: http://localhost:3000/hackathon1
 
       - name: Upload accessibility test results
