@@ -73,6 +73,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
+
       - name: Run link validation tests (T051)
         run: npx playwright test tests/links.test.js --reporter=list
         env:
@@ -105,6 +113,14 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
 
       - name: Run navigation tests (T021-T024, T054)
         run: npx playwright test tests/navigation.test.js --reporter=list
@@ -147,6 +163,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
+
       - name: Run accessibility tests (T052-T053)
         run: npx playwright test tests/accessibility.test.js --reporter=list
         env:
@@ -184,6 +208,14 @@ jobs:
         with:
           name: build
           path: build/
+
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
 
       - name: Run Lighthouse CI
         run: |

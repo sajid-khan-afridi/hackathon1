@@ -1,13 +1,11 @@
 module.exports = {
   ci: {
     collect: {
-      // Run Lighthouse on the production build
-      staticDistDir: './build',
-      // Test multiple pages
+      // Test multiple pages served by npm run serve
       url: [
-        'http://localhost/hackathon1/docs/intro',
-        'http://localhost/hackathon1/docs/chapter-01-foundations',
-        'http://localhost/hackathon1/docs/chapter-02-mechanics',
+        'http://localhost:3000/hackathon1/docs/intro',
+        'http://localhost:3000/hackathon1/docs/chapter-01-foundations',
+        'http://localhost:3000/hackathon1/docs/chapter-02-mechanics',
       ],
       numberOfRuns: 3,
     },

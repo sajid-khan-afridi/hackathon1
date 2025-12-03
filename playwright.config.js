@@ -74,10 +74,11 @@ module.exports = defineConfig({
   ],
 
   // Run your local dev server before starting the tests
-  webServer: {
-    command: process.env.CI ? 'npm run serve' : 'npm run start',
+  // In CI, webServer is disabled to avoid port conflicts in parallel jobs
+  webServer: process.env.CI ? undefined : {
+    command: 'npm run start',
     url: 'http://localhost:3000/hackathon1',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
     timeout: 120 * 1000,
   },
 });
