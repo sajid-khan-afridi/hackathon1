@@ -1,0 +1,251 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # T064: Optimized build job - build once, test multiple times
+  build:
+    name: Build Docusaurus Site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Docusaurus site
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/
+          retention-days: 1
+
+  # T056: Link validation step
+  validate-links:
+    name: Validate Internal Links
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
+
+      - name: Run link validation tests (T051)
+        run: npx playwright test tests/links.test.js --reporter=list
+        env:
+          DEPLOYMENT_URL: http://localhost:3000/hackathon1
+
+  # T057: Playwright test execution step
+  test-navigation:
+    name: Run Navigation Tests
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
+
+      - name: Run navigation tests (T021-T024, T054)
+        run: npx playwright test tests/navigation.test.js --reporter=list
+        env:
+          DEPLOYMENT_URL: http://localhost:3000/hackathon1
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: navigation-test-results
+          path: test-results/
+          retention-days: 7
+
+  # T058: Axe-core accessibility test execution step
+  test-accessibility:
+    name: Run Accessibility Tests
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Start server for testing
+        run: npm run serve &
+        env:
+          CI: true
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000/hackathon1 --timeout 60000
+
+      - name: Run accessibility tests (T052-T053)
+        run: npx playwright test tests/accessibility.test.js --reporter=list
+        env:
+          DEPLOYMENT_URL: http://localhost:3000/hackathon1
+
+      - name: Upload accessibility test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-test-results
+          path: test-results/
+          retention-days: 7
+
+  # T059: Lighthouse CI step
+  lighthouse:
+    name: Run Lighthouse CI
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun --config=.lighthouserc.js
+        env:
+          CI: true
+
+      - name: Upload Lighthouse results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+          retention-days: 7
+
+  # T060-T061: Build and deploy to GitHub Pages
+  # T062: Configured to fail if tests fail (needs: dependencies)
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [validate-links, test-navigation, test-accessibility, lighthouse]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/
+
+      - name: Deploy to GitHub Pages (T061)
+        id: deployment
+        uses: actions/deploy-pages@v4
