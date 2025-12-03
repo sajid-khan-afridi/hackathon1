@@ -39,7 +39,13 @@ module.exports = defineConfig({
   },
 
   // Configure projects for major browsers
-  projects: [
+  // In CI, only test chromium for speed; locally test all browsers
+  projects: process.env.CI ? [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ] : [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

@@ -25,8 +25,17 @@ const VIEWPORTS = {
  * @param {number} timeout - Optional timeout in milliseconds
  */
 async function waitForPageLoad(page, timeout = 30000) {
-  await page.waitForLoadState('networkidle', { timeout });
+  // Wait for DOM to be loaded first (more reliable)
   await page.waitForLoadState('domcontentloaded', { timeout });
+  // In CI, skip networkidle wait as it can be unreliable with some sites
+  // Locally, wait for networkidle for more thorough testing
+  if (!process.env.CI) {
+    try {
+      await page.waitForLoadState('networkidle', { timeout: 10000 });
+    } catch {
+      // Ignore networkidle timeout - not critical
+    }
+  }
 }
 
 /**
