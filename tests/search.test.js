@@ -9,7 +9,7 @@ const { test, expect } = require('@playwright/test');
 test.describe('Search Functionality', () => {
   // T037: Search box displays in navigation bar
   test('search box displays in navigation bar', async ({ page }) => {
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
 
     // Look for search button/input in navbar
     const searchButton = page.locator('button[class*="DocSearch"], button[aria-label*="Search"], .navbar__search, input[type="search"]');
@@ -18,7 +18,7 @@ test.describe('Search Functionality', () => {
 
   // T038: Search returns results for sample queries within 1 second
   test('search returns results for sample queries within 1 second', async ({ page }) => {
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
 
     // Click search button to open search modal
     const searchButton = page.locator('button[class*="DocSearch"], button[aria-label*="Search"]').first();
@@ -49,7 +49,7 @@ test.describe('Search Functionality', () => {
 
   // T039: Clicking search results navigates to correct page
   test('clicking search results navigates to correct page with term highlighting', async ({ page }) => {
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
 
     // Open search
     const searchButton = page.locator('button[class*="DocSearch"], button[aria-label*="Search"]').first();
@@ -83,7 +83,7 @@ test.describe('Search Functionality', () => {
 
   // T040: No results state displays helpful message
   test('no results state displays helpful message for non-existent queries', async ({ page }) => {
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
 
     // Open search
     const searchButton = page.locator('button[class*="DocSearch"], button[aria-label*="Search"]').first();

@@ -44,7 +44,9 @@ async function waitForPageLoad(page, timeout = 30000) {
  * @param {string} path - Path relative to /docs/ (e.g., 'intro', 'chapter-01-foundations')
  */
 async function navigateToDocsPage(page, path) {
-  const url = `/docs/${path}`;
+  // Construct full URL path for proper navigation
+  // Note: baseURL in config is http://localhost:3000/hackathon1
+  const url = `/hackathon1/docs/${path}`;
   await page.goto(url);
   await waitForPageLoad(page);
 }

@@ -9,14 +9,14 @@ const { navigateToDocsPage, waitForPageLoad } = require('./helpers/test-utils');
 
 test.describe('Navigation Structure', () => {
   test('homepage loads successfully', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/hackathon1/');
     await waitForPageLoad(page);
     await expect(page).toHaveTitle(/Physical AI Book/);
   });
 
   test('sidebar navigation is visible', async ({ page }) => {
     await navigateToDocsPage(page, 'intro');
-    const sidebar = page.locator('[class*="sidebar"]');
+    const sidebar = page.locator('.theme-doc-sidebar-container, [class*="docSidebarContainer"]');
     await expect(sidebar).toBeVisible();
   });
 
@@ -27,11 +27,11 @@ test.describe('Navigation Structure', () => {
 
   // T021: Navigation structure test - sidebar, chapter links, breadcrumbs
   test('sidebar displays with chapter links and breadcrumbs', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/hackathon1/');
     await waitForPageLoad(page);
 
     // Verify sidebar is visible
-    const sidebar = page.locator('[class*="sidebar"]').first();
+    const sidebar = page.locator('.theme-doc-sidebar-container, [class*="docSidebarContainer"]');
     await expect(sidebar).toBeVisible();
 
     // Verify chapter links are present and clickable
@@ -72,7 +72,7 @@ test.describe('Navigation Structure', () => {
 
   // T023: Homepage test
   test('homepage displays book title, introduction, and chapter entry points', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/hackathon1/');
     await waitForPageLoad(page);
 
     // Verify book title is displayed

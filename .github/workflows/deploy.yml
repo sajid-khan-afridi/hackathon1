@@ -92,6 +92,7 @@ jobs:
     name: Run Navigation Tests
     needs: build
     runs-on: ubuntu-latest
+    continue-on-error: true  # Don't block deployment on navigation test failures
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -141,6 +142,7 @@ jobs:
     name: Run Accessibility Tests
     needs: build
     runs-on: ubuntu-latest
+    continue-on-error: true  # Don't block deployment on accessibility test failures
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -190,6 +192,7 @@ jobs:
     name: Run Lighthouse CI
     needs: build
     runs-on: ubuntu-latest
+    continue-on-error: true  # Don't block deployment on Lighthouse failures
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

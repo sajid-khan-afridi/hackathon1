@@ -10,7 +10,7 @@ const { navigateToDocsPage } = require('./helpers/test-utils');
 
 test.describe('Accessibility', () => {
   test('homepage has no accessibility violations', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/hackathon1/');
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
@@ -35,7 +35,7 @@ test.describe('Accessibility', () => {
   });
 
   test('search page has no accessibility violations', async ({ page }) => {
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
 
     // Open search if it exists
     const searchButton = page.locator('button[class*="DocSearch"], button[aria-label*="Search"]').first();
@@ -50,7 +50,7 @@ test.describe('Accessibility', () => {
 
   // T053: Keyboard navigation test
   test('keyboard navigation works correctly', async ({ page }) => {
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
 
     // Test Tab navigation
     await page.keyboard.press('Tab');

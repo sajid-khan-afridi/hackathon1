@@ -11,10 +11,10 @@ test.describe('Link Validation', () => {
   // T051: Verify all internal links resolve correctly (100% pass rate per SC-005)
   test('all internal links resolve correctly', async ({ page }) => {
     const pagesToTest = [
-      '/docs/intro',
-      '/docs/chapter-01-foundations',
-      '/docs/chapter-01-foundations/introduction',
-      '/docs/chapter-02-mechanics',
+      '/hackathon1/docs/intro',
+      '/hackathon1/docs/chapter-01-foundations',
+      '/hackathon1/docs/chapter-01-foundations/introduction',
+      '/hackathon1/docs/chapter-02-mechanics',
     ];
 
     const brokenLinks = [];

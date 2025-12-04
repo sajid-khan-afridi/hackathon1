@@ -10,19 +10,19 @@ const { VIEWPORTS, assertNoHorizontalScroll, assertMinFontSize } = require('./he
 test.describe('Responsive Design', () => {
   test('no horizontal scroll on mobile (375px)', async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.mobile);
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
     await assertNoHorizontalScroll(page);
   });
 
   test('minimum font size on mobile', async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.mobile);
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
     await assertMinFontSize(page, 'body', 16);
   });
 
   test('no horizontal scroll on desktop (2560px)', async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.desktop4K);
-    await page.goto('/docs/intro');
+    await page.goto('/hackathon1/docs/intro');
     await assertNoHorizontalScroll(page);
   });
 
