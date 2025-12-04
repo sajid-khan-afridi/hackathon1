@@ -6,6 +6,93 @@ Thank you for your interest in contributing to the Physical AI Book! This guide 
 
 All book content is stored in the `docs/` directory as Markdown files organized by chapters.
 
+## Common Build Errors and Fixes (T102)
+
+When building the site with `npm run build`, you may encounter these common issues:
+
+### Build Failure: Broken Links
+
+**Error**: `Error: Docusaurus found broken links!`
+
+**Cause**: Internal links pointing to non-existent pages or anchors.
+
+**Fix**:
+- Check the link URLs in your markdown files
+- Ensure all internal links start with `/hackathon1/` (the baseUrl)
+- Verify target pages exist in the `docs/` directory
+- Use the link checker: `npm run build` will show all broken links
+
+### Build Failure: Invalid Frontmatter
+
+**Error**: `Error: Invalid frontmatter`
+
+**Cause**: Missing or incorrect frontmatter fields in markdown files.
+
+**Fix**:
+- Ensure all required frontmatter fields are present (title, description, difficulty, chapter, chapter_number)
+- Check YAML syntax - proper indentation and quotes
+- Refer to the Frontmatter Schema section below
+
+### Build Failure: Duplicate Sidebar Items
+
+**Error**: `Error: Duplicate sidebar item`
+
+**Cause**: Multiple files with the same sidebar_position or conflicting sidebar configuration.
+
+**Fix**:
+- Check `sidebars.ts` for duplicate entries
+- Ensure each file has a unique `sidebar_position` value within its directory
+- Remove conflicting auto-generated sidebar configurations
+
+### Build Failure: TypeScript Errors
+
+**Error**: `Error: TypeScript compilation errors`
+
+**Cause**: Type errors in `docusaurus.config.ts` or `sidebars.ts`.
+
+**Fix**:
+- Check syntax in config files
+- Ensure all imports are correct
+- Run `npm install` to ensure dependencies are up to date
+
+### Build Failure: Out of Memory
+
+**Error**: `JavaScript heap out of memory`
+
+**Cause**: Large site or insufficient Node.js memory allocation.
+
+**Fix**:
+- Increase Node.js memory: `NODE_OPTIONS="--max-old-space-size=4096" npm run build`
+- Optimize images and assets in `static/` directory
+- Check for circular dependencies or infinite loops
+
+### Deployment Failure: GitHub Actions Timeout
+
+**Error**: Build exceeds 6 hours or workflow timeout
+
+**Cause**: Tests or build taking too long, or workflow misconfiguration.
+
+**Fix**:
+- Check test timeouts in `playwright.config.js`
+- Optimize slow tests or split into parallel jobs
+- Review workflow file `.github/workflows/deploy.yml` for inefficiencies
+
+### GitHub Pages Service Limits (T103)
+
+Be aware of these GitHub Pages limits:
+
+- **Site size**: Maximum 1 GB (including all files in `build/` directory)
+- **Bandwidth**: 100 GB per month (soft limit)
+- **Build time**: 10 minutes per build (GitHub Actions has 6-hour workflow limit)
+- **File size**: Individual files should be <100 MB
+- **Rate limits**: 10 builds per hour
+
+**Monitoring**:
+- Check build directory size: `du -sh build/`
+- Optimize images: compress PNGs, convert to WebP
+- Use CDN for large assets if needed
+- Monitor deployment success in GitHub Actions tab
+
 ## Frontmatter Schema
 
 Every markdown file in the `docs/` directory must include frontmatter metadata at the top of the file. Frontmatter is written in YAML format between triple dashes (`---`).

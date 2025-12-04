@@ -76,9 +76,41 @@ GIT_USER=<Your GitHub username> npm run deploy
 └── package.json             # Dependencies
 ```
 
+## Browser Support (T112)
+
+This site is tested and supports the latest 2 versions of:
+- **Chrome** (Desktop & Mobile)
+- **Firefox**
+- **Safari** (Desktop & Mobile/iPad)
+- **Microsoft Edge**
+- **WebKit** browsers
+
+The site features:
+- Responsive design (320px - 2560px viewports)
+- Accessibility compliance (WCAG 2.1 AA)
+- Performance optimization (Lighthouse score ≥90)
+- Full keyboard navigation support
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for content authoring guidelines, frontmatter schema, and testing requirements.
+
+## Testing
+
+Run the test suite:
+
+```bash
+# All tests
+npx playwright test
+
+# Specific test files
+npx playwright test tests/links.test.js
+npx playwright test tests/responsive.test.js
+npx playwright test tests/accessibility.test.js
+
+# Lighthouse performance tests
+npx @lhci/cli autorun --config=.lighthouserc.js
+```
 
 ## License
 

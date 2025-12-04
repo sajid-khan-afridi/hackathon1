@@ -1,0 +1,8 @@
+# T098: robots.txt for Physical AI Book site
+# Allow all search engines to index all pages
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sajid-khan-afridi.github.io/hackathon1/sitemap.xml

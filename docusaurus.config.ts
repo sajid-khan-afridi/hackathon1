@@ -65,8 +65,25 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    // SEO: Social card for Open Graph and Twitter Card metadata (T096)
     image: 'img/docusaurus-social-card.jpg',
+    metadata: [
+      // Open Graph metadata
+      {name: 'og:title', content: 'Physical AI Book - Comprehensive Guide to Robotics and Physical AI'},
+      {name: 'og:description', content: 'Learn Physical AI, robotics foundations, mechanics, and cutting-edge applications. A comprehensive educational resource for students and professionals.'},
+      {name: 'og:type', content: 'website'},
+      {name: 'og:url', content: 'https://sajid-khan-afridi.github.io/hackathon1/'},
+      {name: 'og:image', content: 'https://sajid-khan-afridi.github.io/hackathon1/img/docusaurus-social-card.jpg'},
+      // Twitter Card metadata
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:title', content: 'Physical AI Book - Comprehensive Guide to Robotics'},
+      {name: 'twitter:description', content: 'Learn Physical AI, robotics foundations, mechanics, and cutting-edge applications.'},
+      {name: 'twitter:image', content: 'https://sajid-khan-afridi.github.io/hackathon1/img/docusaurus-social-card.jpg'},
+      // Additional SEO metadata
+      {name: 'keywords', content: 'physical AI, robotics, artificial intelligence, machine learning, robotics engineering, automation'},
+      {name: 'author', content: 'Physical AI Book'},
+      {name: 'robots', content: 'index, follow'},
+    ],
     colorMode: {
       respectPrefersColorScheme: true,
     },
