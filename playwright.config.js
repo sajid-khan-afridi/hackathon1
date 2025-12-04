@@ -69,14 +69,17 @@ module.exports = defineConfig({
     },
 
     // Test against mobile viewports
+    // Mobile browsers need longer timeouts due to slower rendering
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
+      timeout: 120 * 1000, // 2 minutes for mobile
     },
 
     {
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
+      timeout: 120 * 1000, // 2 minutes for mobile
     },
 
     // Test against tablet viewports
