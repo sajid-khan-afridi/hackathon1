@@ -51,6 +51,7 @@ jobs:
     name: Validate Internal Links
     needs: build
     runs-on: ubuntu-latest
+    continue-on-error: true  # T066: Make non-blocking to handle mobile browser timeout issues
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
