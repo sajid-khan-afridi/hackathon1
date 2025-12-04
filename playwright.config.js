@@ -9,7 +9,8 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests',
   // Maximum time one test can run for
-  timeout: 30 * 1000,
+  // Increased from 30s to 60s to handle slower CI environments (T066-T067 fixes)
+  timeout: process.env.CI ? 60 * 1000 : 30 * 1000,
 
   // Run tests in files in parallel
   fullyParallel: true,
@@ -30,6 +31,12 @@ module.exports = defineConfig({
   use: {
     // Base URL to use in actions like `await page.goto('/')`
     baseURL: 'http://localhost:3000/hackathon1',
+
+    // Increase navigation timeout for CI environments
+    navigationTimeout: process.env.CI ? 30 * 1000 : 15 * 1000,
+
+    // Increase action timeout for CI environments
+    actionTimeout: process.env.CI ? 15 * 1000 : 10 * 1000,
 
     // Collect trace when retrying the failed test
     trace: 'on-first-retry',
