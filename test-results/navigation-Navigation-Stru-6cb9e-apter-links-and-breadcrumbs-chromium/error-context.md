@@ -1,0 +1,185 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Physical AI Book Logo Physical AI Book" [ref=e7] [cursor=pointer]:
+          - /url: /hackathon1/
+          - img "Physical AI Book Logo" [ref=e9]
+          - generic [ref=e10]: Physical AI Book
+        - link "Book" [ref=e11] [cursor=pointer]:
+          - /url: /hackathon1/docs/chapter-01-foundations/
+      - generic [ref=e12]:
+        - link "GitHub(opens in new tab)" [ref=e13] [cursor=pointer]:
+          - /url: https://github.com/sajid-khan-afridi/hackathon1
+          - text: GitHub
+          - img "(opens in new tab)" [ref=e14]
+        - button "Switch between dark and light mode (currently system mode)" [ref=e17] [cursor=pointer]:
+          - img [ref=e18]
+        - generic [ref=e21]:
+          - textbox "Search" [ref=e22]
+          - generic:
+            - generic: ctrl
+            - generic: K
+  - generic [ref=e25]:
+    - complementary [ref=e26]:
+      - navigation "Docs sidebar" [ref=e29]:
+        - list [ref=e30]:
+          - listitem [ref=e31]:
+            - generic [ref=e32]:
+              - link "Foundations of Physical AI" [ref=e33] [cursor=pointer]:
+                - /url: /hackathon1/docs/chapter-01-foundations/
+                - generic "Foundations of Physical AI" [ref=e34]
+              - button "Collapse sidebar category 'Foundations of Physical AI'" [expanded] [ref=e35] [cursor=pointer]
+            - list [ref=e36]:
+              - listitem [ref=e37]:
+                - link "Introduction to Physical AI" [ref=e38] [cursor=pointer]:
+                  - /url: /hackathon1/docs/chapter-01-foundations/introduction
+                  - generic "Introduction to Physical AI" [ref=e39]
+              - listitem [ref=e40]:
+                - link "History and Evolution of Robotics" [ref=e41] [cursor=pointer]:
+                  - /url: /hackathon1/docs/chapter-01-foundations/history
+                  - generic "History and Evolution of Robotics" [ref=e42]
+              - listitem [ref=e43]:
+                - link "Key Concepts in Physical AI" [ref=e44] [cursor=pointer]:
+                  - /url: /hackathon1/docs/chapter-01-foundations/key-concepts
+                  - generic "Key Concepts in Physical AI" [ref=e45]
+          - listitem [ref=e46]:
+            - generic [ref=e47]:
+              - link "Mechanics and Control" [ref=e48] [cursor=pointer]:
+                - /url: /hackathon1/docs/chapter-02-mechanics/
+                - generic "Mechanics and Control" [ref=e49]
+              - button "Expand sidebar category 'Mechanics and Control'" [ref=e50] [cursor=pointer]
+          - listitem [ref=e51]:
+            - link "Welcome to Physical AI" [ref=e52] [cursor=pointer]:
+              - /url: /hackathon1/docs/intro
+              - generic "Welcome to Physical AI" [ref=e53]
+          - listitem [ref=e54]:
+            - link "Glossary" [ref=e55] [cursor=pointer]:
+              - /url: /hackathon1/docs/glossary
+              - generic "Glossary" [ref=e56]
+    - main [ref=e57]:
+      - generic [ref=e59]:
+        - generic [ref=e61]:
+          - article [ref=e62]:
+            - navigation "Breadcrumbs" [ref=e63]:
+              - list [ref=e64]:
+                - listitem [ref=e65]:
+                  - link "Home page" [ref=e66] [cursor=pointer]:
+                    - /url: /hackathon1/
+                    - img [ref=e67]
+                - listitem [ref=e69]:
+                  - generic [ref=e70]: Foundations of Physical AI
+            - generic [ref=e71]:
+              - heading "Foundations of Physical AI" [level=1] [ref=e73]
+              - paragraph [ref=e74]:
+                - text: Welcome to
+                - strong [ref=e75]: "Chapter 1: Foundations"
+                - text: . This chapter introduces the fundamental concepts that form the basis of Physical AI and robotics. Whether you're completely new to the field or looking to solidify your understanding, this chapter will provide you with essential knowledge.
+              - heading "What You'll LearnDirect link to What You'll Learn" [level=2] [ref=e76]:
+                - text: What You'll Learn
+                - link "Direct link to What You'll Learn" [ref=e77] [cursor=pointer]:
+                  - /url: "#what-youll-learn"
+                  - text: "#"
+              - paragraph [ref=e78]: "In this chapter, we'll cover:"
+              - list [ref=e79]:
+                - listitem [ref=e80]:
+                  - strong [ref=e81]: Introduction to Physical AI
+                  - text: "- What Physical AI is and why it matters"
+                - listitem [ref=e82]:
+                  - strong [ref=e83]: History and Evolution
+                  - text: "- How robotics has developed from early automata to modern intelligent systems"
+                - listitem [ref=e84]:
+                  - strong [ref=e85]: Key Concepts
+                  - text: "- Core terminology, principles, and frameworks"
+                - listitem [ref=e86]:
+                  - strong [ref=e87]: System Components
+                  - text: "- The building blocks of robotic systems"
+              - heading "Why Foundations MatterDirect link to Why Foundations Matter" [level=2] [ref=e88]:
+                - text: Why Foundations Matter
+                - link "Direct link to Why Foundations Matter" [ref=e89] [cursor=pointer]:
+                  - /url: "#why-foundations-matter"
+                  - text: "#"
+              - paragraph [ref=e90]: "Understanding the foundations of Physical AI is crucial because:"
+              - list [ref=e91]:
+                - listitem [ref=e92]:
+                  - strong [ref=e93]: Context
+                  - text: ": Historical perspective helps you understand current challenges"
+                - listitem [ref=e94]:
+                  - strong [ref=e95]: Terminology
+                  - text: ": Shared vocabulary enables clear communication"
+                - listitem [ref=e96]:
+                  - strong [ref=e97]: Principles
+                  - text: ": Core concepts apply across all robotic systems"
+                - listitem [ref=e98]:
+                  - strong [ref=e99]: Integration
+                  - text: ": Foundations show how different components work together"
+              - heading "Chapter StructureDirect link to Chapter Structure" [level=2] [ref=e100]:
+                - text: Chapter Structure
+                - link "Direct link to Chapter Structure" [ref=e101] [cursor=pointer]:
+                  - /url: "#chapter-structure"
+                  - text: "#"
+              - paragraph [ref=e102]: "This chapter is organized into progressive sections:"
+              - list [ref=e103]:
+                - listitem [ref=e104]:
+                  - strong [ref=e105]: Introduction
+                  - text: "- Overview of Physical AI and its significance"
+                - listitem [ref=e106]:
+                  - strong [ref=e107]: History
+                  - text: "- Evolution from mechanical automata to intelligent robots"
+                - listitem [ref=e108]:
+                  - strong [ref=e109]: Key Concepts
+                  - text: "- Essential terminology and principles"
+              - paragraph [ref=e110]: Each section builds on the previous one, so we recommend reading them in order.
+              - heading "Getting StartedDirect link to Getting Started" [level=2] [ref=e111]:
+                - text: Getting Started
+                - link "Direct link to Getting Started" [ref=e112] [cursor=pointer]:
+                  - /url: "#getting-started"
+                  - text: "#"
+              - paragraph [ref=e113]: Ready to begin? Navigate to the first section using the sidebar or click "Next" below to start with the introduction to Physical AI.
+              - separator [ref=e114]
+              - paragraph [ref=e115]:
+                - strong [ref=e116]: Note
+                - text: ": This chapter assumes no prior knowledge and is designed for beginners. More advanced topics are covered in later chapters."
+          - navigation "Docs pages" [ref=e117]:
+            - link "Next Introduction to Physical AI »" [ref=e118] [cursor=pointer]:
+              - /url: /hackathon1/docs/chapter-01-foundations/introduction
+              - generic [ref=e119]: Next
+              - generic [ref=e120]: Introduction to Physical AI »
+        - list [ref=e123]:
+          - listitem [ref=e124]:
+            - link "What You'll Learn" [ref=e125] [cursor=pointer]:
+              - /url: "#what-youll-learn"
+          - listitem [ref=e126]:
+            - link "Why Foundations Matter" [ref=e127] [cursor=pointer]:
+              - /url: "#why-foundations-matter"
+          - listitem [ref=e128]:
+            - link "Chapter Structure" [ref=e129] [cursor=pointer]:
+              - /url: "#chapter-structure"
+          - listitem [ref=e130]:
+            - link "Getting Started" [ref=e131] [cursor=pointer]:
+              - /url: "#getting-started"
+  - contentinfo [ref=e132]:
+    - generic [ref=e133]:
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: Book
+          - list [ref=e137]:
+            - listitem [ref=e138]:
+              - link "Introduction" [ref=e139] [cursor=pointer]:
+                - /url: /hackathon1/docs/intro
+        - generic [ref=e140]:
+          - generic [ref=e141]: Resources
+          - list [ref=e142]:
+            - listitem [ref=e143]:
+              - link "GitHub Repository(opens in new tab)" [ref=e144] [cursor=pointer]:
+                - /url: https://github.com/sajid-khan-afridi/hackathon1
+                - text: GitHub Repository
+                - img "(opens in new tab)" [ref=e145]
+      - generic [ref=e148]: Copyright © 2025 Physical AI Book. Built with Docusaurus.
+```

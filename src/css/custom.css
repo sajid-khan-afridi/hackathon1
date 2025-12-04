@@ -157,3 +157,49 @@ pre {
     font-size: 1.375rem; /* 22px on mobile */
   }
 }
+
+/* Accessibility Fixes - WCAG 2.1 AA Color Contrast (4.5:1 minimum) */
+
+/* Fix search hint kbd elements - increase contrast from 1.51 to 4.5+ */
+.searchHint_iIMx,
+[class*="searchHint"] kbd {
+  color: #5a5a5a !important; /* Darker text for better contrast */
+  background-color: #ebedf0 !important;
+}
+
+/* Fix active menu links - increase contrast from 4.07 to 4.5+ */
+.menu__link--active,
+.menu__link--active:hover {
+  color: #1a7a45 !important; /* Darker green for better contrast */
+  background-color: #f2f2f2 !important;
+}
+
+/* Fix category link labels */
+.categoryLinkLabel_W154,
+[class*="categoryLinkLabel"] {
+  color: #1a7a45 !important;
+}
+
+/* Fix breadcrumb links - increase contrast from 4.07 to 4.5+ */
+.breadcrumbs__link,
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: #1a7a45 !important; /* Darker green for better contrast */
+}
+
+/* Ensure link label has proper contrast */
+.linkLabel_WmDU,
+[class*="linkLabel"] {
+  color: #1a7a45 !important;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .searchHint_iIMx,
+[data-theme='dark'] [class*="searchHint"] kbd {
+  color: #d0d0d0 !important;
+  background-color: #2d2d2d !important;
+}
+
+[data-theme='dark'] .menu__link--active,
+[data-theme='dark'] .breadcrumbs__link {
+  color: #3cad6e !important; /* Lighter green for dark mode */
+}

@@ -1,0 +1,71 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Physical AI Book Logo Physical AI Book" [ref=e7] [cursor=pointer]:
+          - /url: /hackathon1/
+          - img "Physical AI Book Logo" [ref=e9]
+          - generic [ref=e10]: Physical AI Book
+        - link "Book" [ref=e11] [cursor=pointer]:
+          - /url: /hackathon1/docs/chapter-01-foundations/
+      - generic [ref=e12]:
+        - link "GitHub(opens in new tab)" [ref=e13] [cursor=pointer]:
+          - /url: https://github.com/sajid-khan-afridi/hackathon1
+          - text: GitHub
+          - img "(opens in new tab)" [ref=e14]
+        - button "Switch between dark and light mode (currently system mode)" [ref=e17] [cursor=pointer]:
+          - img [ref=e18]
+        - generic [ref=e21]:
+          - textbox "Search" [ref=e22]
+          - generic:
+            - generic: ctrl
+            - generic: K
+  - generic [ref=e23]:
+    - banner [ref=e24]:
+      - generic [ref=e25]:
+        - heading "Physical AI Book" [level=1] [ref=e26]
+        - paragraph [ref=e27]: A comprehensive guide to Physical AI and robotics
+        - link "Start Reading - 5min ⏱️" [ref=e29] [cursor=pointer]:
+          - /url: /hackathon1/docs/intro
+    - main [ref=e30]:
+      - generic [ref=e33]:
+        - generic [ref=e35]:
+          - heading "🤖 Foundations" [level=3] [ref=e36]
+          - paragraph [ref=e37]: Learn the fundamental concepts, history, and key principles that underpin Physical AI and robotics systems.
+          - link "Explore Chapter 1 →" [ref=e38] [cursor=pointer]:
+            - /url: /hackathon1/docs/chapter-01-foundations
+        - generic [ref=e40]:
+          - heading "⚙️ Mechanics & Control" [level=3] [ref=e41]
+          - paragraph [ref=e42]: Dive into kinematics, dynamics, actuators, sensors, and control systems that make robots move precisely.
+          - link "Explore Chapter 2 →" [ref=e43] [cursor=pointer]:
+            - /url: /hackathon1/docs/chapter-02-mechanics
+        - generic [ref=e45]:
+          - heading "📚 Comprehensive Guide" [level=3] [ref=e46]
+          - paragraph [ref=e47]: From beginner to advanced topics, this book provides progressive complexity with examples and real-world applications.
+          - link "Get Started →" [ref=e48] [cursor=pointer]:
+            - /url: /hackathon1/docs/intro
+  - contentinfo [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]: Book
+          - list [ref=e54]:
+            - listitem [ref=e55]:
+              - link "Introduction" [ref=e56] [cursor=pointer]:
+                - /url: /hackathon1/docs/intro
+        - generic [ref=e57]:
+          - generic [ref=e58]: Resources
+          - list [ref=e59]:
+            - listitem [ref=e60]:
+              - link "GitHub Repository(opens in new tab)" [ref=e61] [cursor=pointer]:
+                - /url: https://github.com/sajid-khan-afridi/hackathon1
+                - text: GitHub Repository
+                - img "(opens in new tab)" [ref=e62]
+      - generic [ref=e65]: Copyright © 2025 Physical AI Book. Built with Docusaurus.
+```

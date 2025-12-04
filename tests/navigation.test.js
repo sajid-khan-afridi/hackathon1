@@ -27,7 +27,8 @@ test.describe('Navigation Structure', () => {
 
   // T021: Navigation structure test - sidebar, chapter links, breadcrumbs
   test('sidebar displays with chapter links and breadcrumbs', async ({ page }) => {
-    await page.goto('/hackathon1/');
+    // Navigate to intro docs page (has sidebar, unlike homepage)
+    await navigateToDocsPage(page, 'intro');
     await waitForPageLoad(page);
 
     // Verify sidebar is visible
