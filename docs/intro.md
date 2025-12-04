@@ -71,10 +71,8 @@ Ready to begin? The first chapters are coming soon with comprehensive content on
 - Chapter 1: Foundations of Physical AI
 - Chapter 2: Mechanics and Control Systems
 
-Use the **search** feature in the navigation bar to find specific topics. Also check out our [non-existent page](/docs/this-page-does-not-exist) for more information.
+Use the **search** feature in the navigation bar to find specific topics.
 
 ---
 
 **Note**: This book is a living document and will be updated regularly with new content, examples, and insights from the field of Physical AI.
-
-*Deployment Test: Last updated 2025-12-04 - Testing T066: Full deployment cycle validation*

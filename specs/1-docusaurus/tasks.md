@@ -208,8 +208,8 @@ This is a Docusaurus static site project with the following structure:
 
 - [x] T064 [US3] Optimize CI workflow: parallelize independent test steps (link validation + accessibility tests can run concurrently)
 - [x] T065 [US3] Add workflow status badge to README.md (show build passing/failing status)
-- [ ] T066 [US3] Test full deployment cycle: make content change → push → verify site updates within 5 minutes (validate SC-003)
-- [ ] T067 [US3] Test deployment failure scenario: introduce broken link → verify build fails → verify previous site remains live
+- [x] T066 [US3] Test full deployment cycle: make content change → push → verify site updates within 5 minutes (validate SC-003)
+- [x] T067 [US3] Test deployment failure scenario: introduce broken link → verify build fails → verify previous site remains live
 - [x] T068 [US3] Document CI/CD workflow in CONTRIBUTING.md (explain test gates, deployment process, rollback behavior)
 
 **Checkpoint**: User Story 3 COMPLETE and TESTED (automated deployment with quality gates working)
