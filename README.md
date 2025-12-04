@@ -4,6 +4,12 @@
 
 A comprehensive static documentation site for the Physical AI book, built with [Docusaurus 3.x](https://docusaurus.io/).
 
+## 📚 Read the Book
+
+**[Start Reading →](https://sajid-khan-afridi.github.io/hackathon1/docs/intro)**
+
+Visit the full documentation at: https://sajid-khan-afridi.github.io/hackathon1/docs/intro
+
 ## Prerequisites
 
 - **Node.js 18+**: Required for building and running the site
