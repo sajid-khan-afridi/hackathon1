@@ -35,7 +35,7 @@ function HomepageFeatures(): ReactNode {
         <div className="row">
           <div className={clsx('col col--4')}>
             <div className="text--center padding-horiz--md">
-              <Heading as="h3">🤖 Foundations</Heading>
+              <Heading as="h2">🤖 Foundations</Heading>
               <p>
                 Learn the fundamental concepts, history, and key principles that
                 underpin Physical AI and robotics systems.
@@ -47,7 +47,7 @@ function HomepageFeatures(): ReactNode {
           </div>
           <div className={clsx('col col--4')}>
             <div className="text--center padding-horiz--md">
-              <Heading as="h3">⚙️ Mechanics & Control</Heading>
+              <Heading as="h2">⚙️ Mechanics & Control</Heading>
               <p>
                 Dive into kinematics, dynamics, actuators, sensors, and control
                 systems that make robots move precisely.
@@ -59,7 +59,7 @@ function HomepageFeatures(): ReactNode {
           </div>
           <div className={clsx('col col--4')}>
             <div className="text--center padding-horiz--md">
-              <Heading as="h3">📚 Comprehensive Guide</Heading>
+              <Heading as="h2">📚 Comprehensive Guide</Heading>
               <p>
                 From beginner to advanced topics, this book provides progressive
                 complexity with examples and real-world applications.

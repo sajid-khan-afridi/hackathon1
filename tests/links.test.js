@@ -10,6 +10,8 @@ const { test, expect } = require('@playwright/test');
 test.describe('Link Validation', () => {
   // T051: Verify all internal links resolve correctly (100% pass rate per SC-005)
   test('all internal links resolve correctly', async ({ page }) => {
+    // Increase timeout for mobile browsers which are significantly slower
+    test.setTimeout(120000); // 2 minutes
     const pagesToTest = [
       '/hackathon1/docs/intro',
       '/hackathon1/docs/chapter-01-foundations',
@@ -23,10 +25,12 @@ test.describe('Link Validation', () => {
       await page.goto(pagePath);
 
       // Find all internal links (href starts with / or #)
-      const internalLinks = await page.locator('a[href^="/"], a[href^="#"]').all();
+      // Extract all hrefs at once for better performance on mobile
+      const hrefs = await page.locator('a[href^="/"], a[href^="#"]').evaluateAll(
+        links => links.map(link => link.getAttribute('href')).filter(href => href && href !== '#')
+      );
 
-      for (const link of internalLinks) {
-        const href = await link.getAttribute('href');
+      for (const href of hrefs) {
         if (!href || href === '#') continue; // Skip empty or fragment-only links
 
         // For hash links, just verify the element exists on current page
