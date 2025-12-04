@@ -51,11 +51,24 @@ test.describe('Accessibility', () => {
   // T053: Keyboard navigation test
   test('keyboard navigation works correctly', async ({ page }) => {
     await page.goto('/hackathon1/docs/intro');
+    await page.waitForLoadState('networkidle');
 
-    // Test Tab navigation
+    // Focus on the body first to ensure consistent starting point across browsers
+    await page.evaluate(() => document.body.focus());
+
+    // Test Tab navigation - press Tab and verify we reach a focusable element
     await page.keyboard.press('Tab');
     const firstFocusedElement = await page.evaluate(() => document.activeElement?.tagName);
-    expect(['A', 'BUTTON', 'INPUT']).toContain(firstFocusedElement);
+
+    // Allow BODY/HTML on first tab (Firefox behavior) or interactive elements
+    expect(['A', 'BUTTON', 'INPUT', 'BODY', 'HTML']).toContain(firstFocusedElement);
+
+    // If we got BODY/HTML, press Tab again to reach the first interactive element
+    if (firstFocusedElement === 'BODY' || firstFocusedElement === 'HTML') {
+      await page.keyboard.press('Tab');
+      const secondFocusedElement = await page.evaluate(() => document.activeElement?.tagName);
+      expect(['A', 'BUTTON', 'INPUT']).toContain(secondFocusedElement);
+    }
 
     // Test that focused elements are visible
     const focusedElement = page.locator(':focus');
