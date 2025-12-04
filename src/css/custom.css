@@ -203,3 +203,156 @@ pre {
 [data-theme='dark'] .breadcrumbs__link {
   color: #3cad6e !important; /* Lighter green for dark mode */
 }
+
+/* T083: Touch Target Accessibility - Minimum 44x44px (WCAG 2.1 AA) */
+/* Ensure all interactive elements have adequate touch targets for mobile usability */
+.navbar__link,
+.menu__link,
+.pagination-nav__link,
+.button,
+button,
+a.button,
+.navbar__toggle {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+}
+
+/* Ensure hamburger menu button has adequate touch target */
+.navbar__toggle {
+  padding: 0.75rem;
+}
+
+/* Ensure sidebar links have adequate touch targets */
+.menu__list-item-collapsible .menu__link {
+  min-height: 44px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Ensure search button has adequate touch target */
+.navbar__search button,
+.DocSearch-Button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* T084: Browser Zoom Support (100%, 125%, 150%) */
+/* Ensure content remains readable and accessible at different zoom levels */
+/* Use relative units (rem, em, %) instead of fixed pixels where possible */
+
+/* Ensure content container adapts to zoom */
+.container {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Prevent layout breaks at high zoom levels */
+@media screen and (min-width: 1.25) {
+  /* 125% zoom */
+  .container {
+    max-width: 95%;
+  }
+}
+
+/* Ensure images scale properly with zoom */
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent fixed-width elements from breaking layout at zoom */
+.table-of-contents,
+.theme-doc-sidebar-container {
+  max-width: 100%;
+}
+
+/* T082: Cross-Device Compatibility */
+/* Optimize for iOS Safari, Android Chrome, and desktop browsers */
+
+/* Fix iOS Safari viewport height issues */
+@supports (-webkit-touch-callout: none) {
+  /* iOS-specific fix for 100vh */
+  .main-wrapper {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Smooth scrolling for better UX on all devices */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize tap highlight for touch devices */
+* {
+  -webkit-tap-highlight-color: rgba(46, 133, 85, 0.2);
+  -webkit-touch-callout: none;
+}
+
+/* Re-enable text selection for content */
+article *,
+.markdown * {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Ensure smooth font rendering on all devices */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Responsive breakpoint optimizations */
+/* Mobile-first approach with consistent spacing */
+
+/* Small mobile devices (320px-374px) */
+@media screen and (max-width: 374px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Reduce heading sizes slightly for very small screens */
+  h1 {
+    font-size: 1.5rem; /* 24px */
+  }
+}
+
+/* Tablet devices (768px-1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Optimize sidebar for tablet */
+  .theme-doc-sidebar-container {
+    max-width: 280px;
+  }
+
+  /* Adjust content spacing */
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Large desktop devices (1920px+) */
+@media screen and (min-width: 1920px) {
+  /* Prevent content from becoming too wide */
+  .container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Extra large desktop (2560px+) */
+@media screen and (min-width: 2560px) {
+  /* Scale up font slightly for very large screens */
+  html {
+    font-size: 18px; /* Slightly larger base for better readability */
+  }
+}
