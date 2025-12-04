@@ -71,7 +71,7 @@ Ready to begin? The first chapters are coming soon with comprehensive content on
 - Chapter 1: Foundations of Physical AI
 - Chapter 2: Mechanics and Control Systems
 
-Use the **search** feature in the navigation bar to find specific topics.
+Use the **search** feature in the navigation bar to find specific topics. Also check out our [non-existent page](/docs/this-page-does-not-exist) for more information.
 
 ---
 
