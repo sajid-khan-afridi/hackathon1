@@ -1,18 +1,17 @@
 <!--
 Sync Impact Report:
-Version: 1.0.0 (Initial ratification)
-Modified Principles: All principles created from template
+Version: 1.1.0 (Book Structure Finalization)
+Modified Principles: Principle I updated with finalized 4-module curriculum structure
 Added Sections:
-  - Core Principles (7 principles for book + RAG chatbot)
-  - Technical Stack Requirements
-  - Development Workflow
-  - Governance
-Removed Sections: None (initial creation)
+  - Book Structure & Curriculum (4 modules, 13 weeks)
+  - Learning Outcomes
+  - Assessment Requirements
+Removed Sections: None
 Templates Status:
   ✅ plan-template.md - reviewed, compatible
   ✅ spec-template.md - reviewed, compatible
   ✅ tasks-template.md - reviewed, compatible
-Follow-up TODOs: None
+Follow-up TODOs: Create feature spec for content restructuring to match new curriculum
 -->
 
 # Physical AI & Humanoid Robotics Book Constitution
@@ -20,9 +19,49 @@ Follow-up TODOs: None
 ## Core Principles
 
 ### I. Content-First Documentation
-Every piece of content MUST be structured, accessible, and pedagogically sound. Book chapters MUST be written in Markdown with clear learning objectives. Content MUST follow a progressive complexity model: fundamentals → intermediate concepts → advanced applications. Each chapter MUST include practical examples, visual diagrams, and references to support learning.
+Every piece of content MUST be structured, accessible, and pedagogically sound. The book content MUST follow the **4-Module Curriculum Structure** spanning **13 weeks**, progressing from fundamental robotics middleware to advanced Vision-Language-Action (VLA) systems. Each module MUST include clear learning objectives, practical examples, code samples, visual diagrams, and hands-on assessments.
 
-**Rationale**: Technical books require careful scaffolding of knowledge. Readers need clear pathways from basic concepts to advanced understanding without overwhelming cognitive load.
+**Book Structure (4 Modules, 13 Weeks):**
+
+1. **Module 1: The Robotic Nervous System (ROS 2)** [Weeks 3-5]
+   - Focus: Middleware for robot control (rclpy, URDF, nodes, topics, services)
+   - Learning: Bridge Python AI agents to ROS 2 controllers for humanoid robots
+
+2. **Module 2: The Digital Twin (Gazebo & Unity)** [Weeks 6-7]
+   - Focus: Physics simulation and environment building
+   - Learning: Simulate gravity, collisions, sensors (LiDAR, depth cameras, IMUs)
+
+3. **Module 3: The AI-Robot Brain (NVIDIA Isaac™)** [Weeks 8-10]
+   - Focus: Advanced perception, VSLAM, navigation with Isaac Sim/ROS
+   - Learning: Hardware-accelerated perception, Nav2 path planning, sim-to-real transfer
+
+4. **Module 4: Vision-Language-Action (VLA)** [Weeks 11-13]
+   - Focus: Convergence of LLMs and robotics (voice-to-action, cognitive planning)
+   - Learning: OpenAI Whisper for voice commands, LLMs for natural language task planning, autonomous humanoid capstone
+
+**Progressive Complexity Model:**
+- **Weeks 1-2**: Foundations of Physical AI and embodied intelligence (sensor systems, digital-to-physical transition)
+- **Weeks 3-5**: ROS 2 fundamentals (nodes, topics, services, launch files)
+- **Weeks 6-7**: Simulation with Gazebo and Unity (URDF/SDF, physics, visualization)
+- **Weeks 8-10**: NVIDIA Isaac platform (Isaac SDK, Isaac Sim, AI-powered perception, RL)
+- **Weeks 11-12**: Humanoid robot development (kinematics, bipedal locomotion, manipulation, natural interaction)
+- **Week 13**: Conversational robotics (GPT integration, speech recognition, multi-modal interaction)
+
+**Assessment Requirements:**
+- ROS 2 package development project
+- Gazebo simulation implementation
+- Isaac-based perception pipeline
+- **Capstone**: Simulated humanoid robot that receives voice commands, plans paths, navigates obstacles, identifies objects using computer vision, and manipulates them
+
+**Learning Outcomes:**
+- Understand Physical AI principles and embodied intelligence
+- Master ROS 2 (Robot Operating System) for robotic control
+- Simulate robots with Gazebo and Unity
+- Develop with NVIDIA Isaac AI robot platform
+- Design humanoid robots for natural interactions
+- Integrate GPT models for conversational robotics
+
+**Rationale**: Humanoid robots are poised to excel in our human-centered world because they share our physical form and can be trained with abundant data from interacting in human environments. This curriculum bridges the gap between the digital brain (AI models) and the physical body (robotics), teaching students to deploy embodied intelligence that operates in physical space, not just digital environments.
 
 ### II. Docusaurus Architecture
 The book MUST be implemented as a Docusaurus static site. All content MUST use Docusaurus conventions: docs/ for chapters, blog/ for updates, static/ for assets. The site structure MUST support versioning, search, and responsive design. Configuration MUST be maintainable and extensible.
@@ -162,4 +201,4 @@ Amendments require:
 ### Runtime Development Guidance
 Agents and developers MUST consult this constitution before starting new features. When in doubt, prefer simplicity and adherence to stated principles over clever solutions. Use CLAUDE.md for agent-specific execution guidance.
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-02 | **Last Amended**: 2025-12-02
+**Version**: 1.1.0 | **Ratified**: 2025-12-02 | **Last Amended**: 2025-12-04
