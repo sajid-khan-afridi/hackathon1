@@ -60,12 +60,24 @@ module.exports = defineConfig({
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        ...devices['Desktop Firefox'],
+        // Firefox needs more time for client-side hydration
+        navigationTimeout: 45 * 1000,
+        actionTimeout: 20 * 1000,
+      },
+      timeout: 90 * 1000, // Increased timeout for Firefox tests
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: {
+        ...devices['Desktop Safari'],
+        // WebKit needs more time for client-side hydration
+        navigationTimeout: 45 * 1000,
+        actionTimeout: 20 * 1000,
+      },
+      timeout: 90 * 1000, // Increased timeout for WebKit tests
     },
 
     // Test against mobile viewports

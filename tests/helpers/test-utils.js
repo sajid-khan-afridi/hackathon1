@@ -27,6 +27,16 @@ const VIEWPORTS = {
 async function waitForPageLoad(page, timeout = 30000) {
   // Wait for DOM to be loaded first (more reliable)
   await page.waitForLoadState('domcontentloaded', { timeout });
+
+  // Wait for client-side hydration to complete (Docusaurus-specific)
+  // Check if the page has been hydrated by looking for the data attribute
+  try {
+    await page.waitForSelector('[data-has-hydrated="true"]', { timeout: 15000 });
+  } catch {
+    // If hydration marker not found, wait a bit for JS to execute
+    await page.waitForTimeout(2000);
+  }
+
   // In CI, skip networkidle wait as it can be unreliable with some sites
   // Locally, wait for networkidle for more thorough testing
   if (!process.env.CI) {

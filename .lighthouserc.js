@@ -4,8 +4,8 @@ module.exports = {
       // Test multiple pages served by npm run serve
       url: [
         'http://localhost:3000/hackathon1/docs/intro',
-        'http://localhost:3000/hackathon1/docs/chapter-01-foundations',
-        'http://localhost:3000/hackathon1/docs/chapter-02-mechanics',
+        'http://localhost:3000/hackathon1/docs/module-01-ros2/',
+        'http://localhost:3000/hackathon1/docs/capstone/',
       ],
       numberOfRuns: 3,
     },
@@ -59,7 +59,8 @@ module.exports = {
       },
     },
     upload: {
-      target: 'temporary-public-storage',
+      target: 'filesystem',
+      outputDir: '.lighthouseci',
     },
   },
 };
