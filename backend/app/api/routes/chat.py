@@ -37,10 +37,21 @@ async def chat(
         logger.info(f"Processing chat request: query='{request.query[:50]}...', conversation_id={request.conversation_id}")
 
         # Generate response using RAG pipeline
-        response = await rag_service.generate_response(
-            query=request.query,
-            conversation_id=request.conversation_id,
+        result = await rag_service.query(
+            query_text=request.query,
+            user_id=request.conversation_id,  # Use conversation_id as user_id
             top_k=request.top_k
+        )
+
+        # Convert result dict to ChatResponse
+        response = ChatResponse(
+            response=result["response"],
+            sources=result["sources"],
+            conversation_id=request.conversation_id or "default",
+            query_type=result.get("query_type", "general"),
+            retrieval_time_ms=result.get("retrieval_time_ms", 0),
+            generation_time_ms=result.get("generation_time_ms", 0),
+            total_time_ms=result.get("total_time_ms", 0)
         )
 
         logger.info(f"Successfully generated response: sources={len(response.sources)}, time={response.total_time_ms}ms")

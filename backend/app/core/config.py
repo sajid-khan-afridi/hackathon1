@@ -20,7 +20,14 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
 
     # CORS Configuration
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8000"]
+    # Default includes localhost for development
+    # In production, set ALLOWED_ORIGINS environment variable to include GitHub Pages URL
+    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:8000,https://sajid-khan-afridi.github.io"
+
+    @property
+    def CORS_ORIGINS(self) -> List[str]:
+        """Parse ALLOWED_ORIGINS as comma-separated list"""
+        return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
 
     # Database Configuration (Neon Postgres)
     DATABASE_URL: str = os.getenv(
@@ -80,6 +87,7 @@ class Settings(BaseSettings):
         env_file = ".env"
         env_file_encoding = "utf-8"
         case_sensitive = True
+        extra = "ignore"  # Ignore extra environment variables not defined in Settings
 
 
 # Global settings instance

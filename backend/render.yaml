@@ -1,0 +1,33 @@
+# Render Blueprint - Infrastructure as Code
+services:
+  - type: web
+    name: physical-ai-backend
+    env: python
+    region: oregon  # Change to your preferred region
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: physical-ai-db
+          property: connectionString
+      - key: QDRANT_URL
+        sync: false  # Set manually in dashboard
+      - key: QDRANT_API_KEY
+        sync: false  # Set manually in dashboard
+      - key: OPENAI_API_KEY
+        sync: false  # Set manually in dashboard
+      - key: ALLOWED_ORIGINS
+        value: https://sajid-khan-afridi.github.io,http://localhost:3000
+
+databases:
+  - name: physical-ai-db
+    databaseName: physical_ai
+    user: physical_ai_user
+    plan: free
