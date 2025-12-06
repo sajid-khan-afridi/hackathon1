@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  # Neon Postgres (use official Postgres for local dev)
+  postgres:
+    image: postgres:15-alpine
+    container_name: physical-ai-postgres
+    environment:
+      POSTGRES_USER: physical_ai_user
+      POSTGRES_PASSWORD: dev_password_change_in_production
+      POSTGRES_DB: physical_ai
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U physical_ai_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - physical-ai-network
+
+  # Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: physical-ai-qdrant
+    ports:
+      - "6333:6333"    # HTTP API
+      - "6334:6334"    # gRPC API
+    volumes:
+      - qdrant_data:/qdrant/storage
+      - qdrant_snapshots:/qdrant/snapshots
+    environment:
+      # Optional: Set API key for production
+      # QDRANT__SERVICE__API_KEY: your-api-key-here
+      QDRANT__LOG_LEVEL: INFO
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:6333/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - physical-ai-network
+
+  # FastAPI Backend (optional - for containerized development)
+  backend:
+    build:
+      context: ../../backend
+      dockerfile: ../shared/docker/Dockerfile.backend
+    container_name: physical-ai-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://physical_ai_user:dev_password_change_in_production@postgres:5432/physical_ai
+      - QDRANT_URL=http://qdrant:6333
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    volumes:
+      - ../../backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - physical-ai-network
+
+  # Docusaurus Frontend (optional - for containerized development)
+  frontend:
+    build:
+      context: ../../frontend
+      dockerfile: ../shared/docker/Dockerfile.frontend
+    container_name: physical-ai-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://localhost:8000
+    volumes:
+      - ../../frontend:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - physical-ai-network
+
+  # pgAdmin (optional - for database management)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: physical-ai-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@physical-ai.local
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - physical-ai-network
+
+volumes:
+  postgres_data:
+    driver: local
+  qdrant_data:
+    driver: local
+  qdrant_snapshots:
+    driver: local
+
+networks:
+  physical-ai-network:
+    driver: bridge

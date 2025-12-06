@@ -35,6 +35,19 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Custom fields for API configuration
+  customFields: {
+    apiUrl: process.env.API_URL || 'http://localhost:8000',
+  },
+
+  // Scripts to load before the app
+  scripts: [
+    {
+      src: '/hackathon1/js/api-config.js',
+      async: false,
+    },
+  ],
+
   presets: [
     [
       'classic',

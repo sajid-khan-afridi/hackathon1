@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "physical-ai-rag-backend"
+version = "0.1.0"
+description = "RAG chatbot backend for Physical AI book"
+authors = ["Physical AI Team"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

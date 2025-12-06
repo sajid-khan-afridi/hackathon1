@@ -1,0 +1,165 @@
+"""
+FastAPI application for Physical AI RAG chatbot
+"""
+
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import os
+from typing import List, Optional
+
+# Initialize FastAPI app
+app = FastAPI(
+    title="Physical AI RAG API",
+    description="RAG-powered chatbot for the Physical AI book",
+    version="1.0.0",
+)
+
+# Configure CORS
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+
+# Pydantic models
+class ChatRequest(BaseModel):
+    query: str
+    conversation_id: Optional[str] = None
+
+
+class Source(BaseModel):
+    module: str
+    chapter: str
+    section: str
+    content_preview: str
+
+
+class ChatResponse(BaseModel):
+    response: str
+    sources: List[Source]
+    conversation_id: str
+
+
+# Health check endpoint
+@app.get("/api/v1/health")
+async def health_check():
+    """Health check endpoint"""
+    return {
+        "status": "healthy",
+        "version": "1.0.0",
+        "service": "physical-ai-rag-api"
+    }
+
+
+# Chat endpoint
+@app.post("/api/v1/chat", response_model=ChatResponse)
+async def chat(request: ChatRequest):
+    """
+    Handle chat requests with RAG pipeline
+
+    1. Generate query embedding
+    2. Retrieve relevant chunks from hybrid storage
+    3. Assemble context
+    4. Generate response with OpenAI
+    5. Return response with sources
+    """
+    try:
+        # TODO: Implement RAG pipeline
+        # 1. rag_service.embed_query(request.query)
+        # 2. rag_service.retrieve_context(embedding)
+        # 3. rag_service.generate_response(query, context)
+
+        # Placeholder response
+        response_text = f"This is a placeholder response to: {request.query}"
+
+        sources = [
+            Source(
+                module="module-01-ros2",
+                chapter="01-fundamentals",
+                section="publisher-subscriber",
+                content_preview="ROS2 uses a publisher-subscriber pattern..."
+            )
+        ]
+
+        return ChatResponse(
+            response=response_text,
+            sources=sources,
+            conversation_id=request.conversation_id or "new-conversation"
+        )
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# Document management endpoints
+@app.get("/api/v1/documents")
+async def list_documents():
+    """List all documents in the knowledge base"""
+    # TODO: Query database for documents
+    return {"documents": []}
+
+
+@app.post("/api/v1/documents/ingest")
+async def ingest_document(file_path: str):
+    """
+    Ingest a new document into the knowledge base
+
+    1. Read document
+    2. Chunk content
+    3. Generate embeddings
+    4. Store in Postgres + Qdrant
+    """
+    # TODO: Implement ingestion pipeline
+    return {"status": "success", "message": f"Document {file_path} ingested"}
+
+
+# Analytics endpoints
+@app.get("/api/v1/analytics/popular-queries")
+async def get_popular_queries():
+    """Get most popular user queries"""
+    # TODO: Query user_queries table
+    return {"queries": []}
+
+
+@app.get("/api/v1/analytics/chunk-usage")
+async def get_chunk_usage():
+    """Get most frequently retrieved chunks"""
+    # TODO: Query chunk_usage table
+    return {"chunks": []}
+
+
+# Startup event
+@app.on_event("startup")
+async def startup_event():
+    """Initialize services on startup"""
+    print("Starting Physical AI RAG API...")
+    # TODO: Initialize database connections
+    # TODO: Initialize Qdrant client
+    # TODO: Initialize OpenAI client
+    # TODO: Verify all services are healthy
+
+
+# Shutdown event
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on shutdown"""
+    print("Shutting down Physical AI RAG API...")
+    # TODO: Close database connections
+    # TODO: Close Qdrant client
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        log_level="info"
+    )

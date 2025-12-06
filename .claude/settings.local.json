@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "mcp__github__list_commits",
-      "WebFetch(domain:sajid-khan-afridi.github.io)"
+      "WebFetch(domain:sajid-khan-afridi.github.io)",
+      "Bash(git fetch:*)",
+      "Bash(if [ -d \"specs\" ])",
+      "Bash(then ls -d specs/*-physical-ai-rag-chatbot)",
+      "Bash(else echo \"No specs directory found\")",
+      "Bash(fi)",
+      "Bash(powershell.exe:*)",
+      "Bash(bash:*)",
+      "Bash(if [ -d \"D:\\GitHub Connected\\hackathon1\\specs\\001-physical-ai-rag-chatbot\\checklists\" ])",
+      "Bash(then ls -la \"D:\\GitHub Connected\\hackathon1\\specs\\001-physical-ai-rag-chatbot\\checklists\")",
+      "Bash(else echo \"No checklists directory found\")",
+      "Bash(git rev-parse:*)"
     ],
     "deny": [],
     "ask": []

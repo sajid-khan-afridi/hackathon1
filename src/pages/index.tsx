@@ -35,25 +35,25 @@ function HomepageFeatures(): ReactNode {
         <div className="row">
           <div className={clsx('col col--4')}>
             <div className="text--center padding-horiz--md">
-              <Heading as="h2">🤖 Foundations</Heading>
+              <Heading as="h2">🤖 ROS 2 Fundamentals</Heading>
               <p>
-                Learn the fundamental concepts, history, and key principles that
-                underpin Physical AI and robotics systems.
+                Learn the fundamental concepts of Physical AI, ROS 2 middleware,
+                sensor systems, and robot programming with Python.
               </p>
-              <Link to="/docs/chapter-01-foundations">
-                Explore Chapter 1 →
+              <Link to="/docs/module-01-ros2">
+                Explore Module 1 →
               </Link>
             </div>
           </div>
           <div className={clsx('col col--4')}>
             <div className="text--center padding-horiz--md">
-              <Heading as="h2">⚙️ Mechanics & Control</Heading>
+              <Heading as="h2">⚙️ Robot Simulation</Heading>
               <p>
-                Dive into kinematics, dynamics, actuators, sensors, and control
-                systems that make robots move precisely.
+                Master Gazebo and Unity simulation environments for testing
+                humanoid robots with realistic physics and sensors.
               </p>
-              <Link to="/docs/chapter-02-mechanics">
-                Explore Chapter 2 →
+              <Link to="/docs/module-02-gazebo-unity">
+                Explore Module 2 →
               </Link>
             </div>
           </div>
