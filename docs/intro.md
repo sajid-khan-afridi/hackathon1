@@ -34,22 +34,34 @@ Physical AI refers to artificial intelligence systems that interact with and ope
 
 ## What You'll Learn
 
-This book is structured to take you from foundational concepts to advanced applications:
+This book is structured as a **13-week progressive curriculum** organized into 4 modules, taking you from foundational concepts to building fully autonomous humanoid robots:
 
-### Chapter 1: Foundations
-- History and evolution of robotics
-- Core concepts in Physical AI
-- Key components of robotic systems
-- The relationship between AI and robotics
+### Module 1: ROS 2 Fundamentals (Weeks 1-5)
+- Introduction to Physical AI and embodied intelligence
+- ROS 2 architecture, nodes, topics, services, and actions
+- Python-based robotics development with rclpy
+- URDF robot model definition for humanoid systems
 
-### Chapter 2: Mechanics and Control
-- Kinematics and dynamics
-- Actuators and sensors
-- Control systems
-- Motion planning
+### Module 2: Robot Simulation (Weeks 6-7)
+- Gazebo environment setup and physics simulation
+- Unity introduction for photorealistic rendering
+- Sensor simulation: LiDAR, depth cameras, and IMUs
+- Human-robot interaction scenario development
 
-### Coming Soon
-Additional chapters covering perception, learning, human-robot interaction, and real-world applications.
+### Module 3: NVIDIA Isaac Platform (Weeks 8-10)
+- Isaac SDK and Isaac Sim with GPU-accelerated simulation
+- AI-powered perception and computer vision
+- Reinforcement learning for bipedal locomotion
+- Nav2 path planning and autonomous navigation
+
+### Module 4: Humanoid Development & Conversational Robotics (Weeks 11-13)
+- Humanoid kinematics, dynamics, and bipedal locomotion
+- Manipulation and grasping with MoveIt
+- OpenAI Whisper integration for voice recognition
+- GPT-powered natural language to ROS 2 action systems
+
+### Capstone Project: Autonomous Humanoid
+Integrate all 4 modules to build a simulated humanoid robot that receives voice commands, plans paths, identifies objects, and manipulates them autonomously.
 
 ## How to Use This Book
 
@@ -67,11 +79,17 @@ Each page includes:
 
 ## Getting Started
 
-Ready to begin? The first chapters are coming soon with comprehensive content on:
-- Chapter 1: Foundations of Physical AI
-- Chapter 2: Mechanics and Control Systems
+Ready to begin your 13-week journey into Physical AI and humanoid robotics?
 
-Use the **search** feature in the navigation bar to find specific topics.
+**For Sequential Learners**: Start with [Module 1: ROS 2 Fundamentals](./module-01-ros2/) and progress through all 13 weeks to the Capstone Project.
+
+**For Educators**: Review the module structures to design your semester-long course. Each module includes learning objectives, prerequisites, and assessment points.
+
+**For Self-Directed Learners**: Jump to any module that matches your interests. Each module includes prerequisites and cross-references to earlier content.
+
+**For Project-Based Learning**: Explore the [Autonomous Humanoid Capstone Project](./capstone/) to see how all modules integrate into a complete system.
+
+Use the **search** feature in the navigation bar to find specific topics, and check the [Glossary](./glossary.md) for robotics terminology.
 
 ---
 

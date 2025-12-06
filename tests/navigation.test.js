@@ -33,8 +33,8 @@ test.describe('Navigation Structure', () => {
     await expect(page.locator('h1')).toContainText('Welcome to Physical AI');
   });
 
-  // T021: Navigation structure test - sidebar, chapter links, breadcrumbs
-  test('sidebar displays with chapter links and breadcrumbs', async ({ page, viewport }) => {
+  // T021: Navigation structure test - sidebar, module links, breadcrumbs
+  test('sidebar displays with module links and breadcrumbs', async ({ page, viewport }) => {
     // Navigate to intro docs page (has sidebar, unlike homepage)
     await navigateToDocsPage(page, 'intro');
     await waitForPageLoad(page);
@@ -52,15 +52,15 @@ test.describe('Navigation Structure', () => {
       }
     }
 
-    // Verify chapter links are present
-    const chapterLink = page.locator('a:has-text("Foundations")').first();
-    await expect(chapterLink).toBeAttached();
+    // Verify module links are present (actual content uses "Module" not "chapter")
+    const moduleLink = page.locator('a:has-text("Module 1")').first();
+    await expect(moduleLink).toBeAttached();
 
-    // Navigate to a chapter page
-    await chapterLink.click();
+    // Navigate to a module page
+    await moduleLink.click();
     await waitForPageLoad(page);
 
-    // Verify breadcrumbs are present on chapter page
+    // Verify breadcrumbs are present on module page
     const breadcrumbs = page.locator('nav[aria-label*="readcrumb"]').first();
     await expect(breadcrumbs).toBeVisible();
   });
@@ -89,7 +89,7 @@ test.describe('Navigation Structure', () => {
   });
 
   // T023: Homepage test
-  test('homepage displays book title, introduction, and chapter entry points', async ({ page, viewport }) => {
+  test('homepage displays book title, introduction, and module entry points', async ({ page, viewport }) => {
     await page.goto('/hackathon1/');
     await waitForPageLoad(page);
 
@@ -102,15 +102,15 @@ test.describe('Navigation Structure', () => {
     const introText = page.locator('text=/Physical AI|robotics|embodied/i').first();
     await expect(introText).toBeVisible();
 
-    // Verify entry points to chapters exist (links to chapters)
+    // Verify entry points to modules exist (links to modules)
     // On mobile, these may be in a collapsed menu
-    const chapterLinks = page.locator('a[href*="/chapter-"]');
+    const moduleLinks = page.locator('a[href*="/module-"]');
     if (viewport && viewport.width < 996) {
       // Mobile: just verify links exist in DOM
-      await expect(chapterLinks.first()).toBeAttached();
+      await expect(moduleLinks.first()).toBeAttached();
     } else {
       // Desktop: verify links are visible
-      await expect(chapterLinks.first()).toBeVisible();
+      await expect(moduleLinks.first()).toBeVisible();
     }
   });
 
@@ -122,10 +122,10 @@ test.describe('Navigation Structure', () => {
     const h1 = page.locator('h1');
     await expect(h1).toBeVisible();
 
-    // Verify we can find a chapter page with more complex content
-    const chapterLink = page.locator('a[href*="/chapter-01"]').first();
-    if (await chapterLink.isVisible()) {
-      await chapterLink.click();
+    // Verify we can find a module page with more complex content
+    const moduleLink = page.locator('a[href*="/module-01"]').first();
+    if (await moduleLink.isVisible()) {
+      await moduleLink.click();
       await waitForPageLoad(page);
 
       // Verify various markdown elements

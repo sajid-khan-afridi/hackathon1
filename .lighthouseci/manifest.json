@@ -1,0 +1,110 @@
+[
+  {
+    "url": "http://localhost:3000/hackathon1/docs/intro",
+    "isRepresentativeRun": false,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_intro-2025_12_06_14_34_08.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_intro-2025_12_06_14_34_08.report.json",
+    "summary": {
+      "performance": 0.6,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/intro",
+    "isRepresentativeRun": false,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_intro-2025_12_06_14_34_27.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_intro-2025_12_06_14_34_27.report.json",
+    "summary": {
+      "performance": 0.63,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/module-01-ros2/",
+    "isRepresentativeRun": false,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_module_01_ros2_-2025_12_06_14_34_50.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_module_01_ros2_-2025_12_06_14_34_50.report.json",
+    "summary": {
+      "performance": 0.53,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/module-01-ros2/",
+    "isRepresentativeRun": false,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_module_01_ros2_-2025_12_06_14_35_32.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_module_01_ros2_-2025_12_06_14_35_32.report.json",
+    "summary": {
+      "performance": 0.58,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/capstone/",
+    "isRepresentativeRun": false,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_capstone_-2025_12_06_14_35_51.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_capstone_-2025_12_06_14_35_51.report.json",
+    "summary": {
+      "performance": 0.62,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/capstone/",
+    "isRepresentativeRun": false,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_capstone_-2025_12_06_14_36_29.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_capstone_-2025_12_06_14_36_29.report.json",
+    "summary": {
+      "performance": 0.57,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/intro",
+    "isRepresentativeRun": true,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_intro-2025_12_06_14_33_48.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_intro-2025_12_06_14_33_48.report.json",
+    "summary": {
+      "performance": 0.63,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/module-01-ros2/",
+    "isRepresentativeRun": true,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_module_01_ros2_-2025_12_06_14_35_13.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_module_01_ros2_-2025_12_06_14_35_13.report.json",
+    "summary": {
+      "performance": 0.57,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  },
+  {
+    "url": "http://localhost:3000/hackathon1/docs/capstone/",
+    "isRepresentativeRun": true,
+    "htmlPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_capstone_-2025_12_06_14_36_10.report.html",
+    "jsonPath": "D:\\GitHub Connected\\hackathon1\\.lighthouseci\\localhost-hackathon1_docs_capstone_-2025_12_06_14_36_10.report.json",
+    "summary": {
+      "performance": 0.56,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 0.92
+    }
+  }
+]
